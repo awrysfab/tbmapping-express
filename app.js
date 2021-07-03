@@ -1,11 +1,19 @@
+require('dotenv').config();
+require('./app/auth/passport');
+
 const express = require("express");
 const app = express();
 const port = process.env.APP_PORT || 3001;
-require('dotenv').config();
 const routes = require("./app/routes");
 
-const sequelize = require("./config/database");
+const cors = require('cors');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
+
+const sequelize = require("./config/database");
 // sequelize.sync();
 
 // sequelize.sync({ force: true }).then(() => {

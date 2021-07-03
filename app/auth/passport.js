@@ -12,7 +12,7 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET,
     },
     ((jwtPayload, done) => Admin.findOne({ where: { id: jwtPayload.id } })
-      .then((user) => done(null, user))
+      .then((admin) => done(null, admin))
       .catch((err) => done(err)))
   )
 );
