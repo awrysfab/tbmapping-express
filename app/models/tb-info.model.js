@@ -1,25 +1,25 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize = require("./../../config/database");
+const sequelize = require("../../config/database");
 
-class Admin extends Model {}
+class TbInfo extends Model {}
 
-Admin.init(
+TbInfo.init(
   {
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
+    description: {
       type: DataTypes.STRING,
     },
-    password: {
-      type: DataTypes.TEXT,
+    admin_id: {
+      type: DataTypes.INTEGER,
     },
   },
   {
     sequelize,
-    modelName: "Admin",
-    tableName: "admins",
+    modelName: "TbInfo",
+    tableName: "tb_infos",
     createdAt: "created_at",
     updatedAt: "updated_at",
     underscored: true,
@@ -33,6 +33,6 @@ Admin.init(
 //   foreignKey: "creator",
 // });
 
-// console.log("Admin", Admin === sequelize.models.Admin);
+// console.log("Admin", TbInfo === sequelize.models.TbInfo);
 
-module.exports = Admin;
+module.exports = TbInfo;

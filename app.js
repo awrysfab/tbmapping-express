@@ -1,28 +1,16 @@
-require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
-
 const app = express();
+const port = process.env.APP_PORT || 3001;
+require('dotenv').config();
+const routes = require("./app/routes");
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-app.use(cors(corsOptions));
+const sequelize = require("./config/database");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// sequelize.sync();
 
+// sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 
-const PORT = process.env.APP_PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running at port :${PORT}`)
-})
-
-const db = require("./app/models");
-db.sequelize.sync();
-
-app.get("/", (req, res) => {
-  res.json({
-    message: "it works!"
-  });
-});
+app.use("/api", routes);
+app.listen(port, () => console.log(`run in port ${port}`));
