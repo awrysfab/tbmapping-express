@@ -56,4 +56,34 @@ router.post(
     }
   });
 
+router.put(
+  "/:id",
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const id = req.params.id;
+      TbInfo.update(req.body, {
+        where: { id: id }
+      })
+        .then(num => {
+          if (num == 1) {
+            res.send({
+              message: "Tbinfo was updated successfully."
+            });
+          } else {
+            res.send({
+              message: `Cannot update Tbinfo with id=${id}.`
+            });
+          }
+        })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: "Some error occurred."
+      });
+    }
+  }
+);
+
+
 module.exports = router;
