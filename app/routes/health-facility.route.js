@@ -90,4 +90,33 @@ router.put(
   }
 );
 
+router.delete(
+  "/:id",
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const id = req.params.id;
+      HealthFacility.destroy({
+        where: { id: id }
+      })
+        .then(num => {
+          if (num == 1) {
+            res.send({
+              message: "Health facility was deleted successfully!"
+            });
+          } else {
+            res.send({
+              message: `Cannot delete health facility with id=${id}`
+            });
+          }
+        })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: "Some error occurred."
+      });
+    }
+  }
+);
+
 module.exports = router;
