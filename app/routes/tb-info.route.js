@@ -11,7 +11,6 @@ router.get(
       const tbinfos = await TbInfo.findAll(
       );
       res.status(200).json({
-        status: true,
         message: "get list of tbinfos",
         data: tbinfos,
       });

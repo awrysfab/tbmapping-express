@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
     const healthFacilities = await HealthFacility.findAll(
       );
     res.status(200).json({
-      status: true,
       message: "get list of healthFacilities",
       data: healthFacilities,
     });

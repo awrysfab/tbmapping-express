@@ -8,7 +8,6 @@ router.get("/", async (req, res) => {
       // {include: Forum}
       );
     res.status(200).json({
-      status: true,
       message: "get list of subdistricts",
       data: subdistricts,
     });
