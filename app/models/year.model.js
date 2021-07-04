@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../../config/database");
+const ClusterAttribute = require("./cluster-attribute.model")
 
 class Year extends Model {}
 
@@ -19,6 +20,13 @@ Year.init(
     underscored: true,
   }
 );
+
+Year.hasMany(ClusterAttribute, {
+  foreignKey: "year_id",
+});
+ClusterAttribute.belongsTo(Year, {
+  foreignKey: "year_id",
+});
 
 // console.log("Year", Year === sequelize.models.Year);
 

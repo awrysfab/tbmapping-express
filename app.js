@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const sequelize = require("./config/database");
+
 // sequelize.sync();
 
 // sequelize.sync({ force: true }).then(() => {

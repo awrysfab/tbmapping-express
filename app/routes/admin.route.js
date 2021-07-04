@@ -36,10 +36,10 @@ router.get(
     const bearerToken = req.headers['authorization'].split(' ');
     const decodedJWT = jwt.verify(bearerToken[1], process.env.JWT_SECRET);
     try {
-      const admins = await Admin.findOne({ where: { id: decodedJWT.id } });
+      const admin = await Admin.findOne({ where: { id: decodedJWT.id } });
       res.status(200).json({
         message: "get admin",
-        data: admins,
+        data: admin,
       });
     } catch (error) {
       console.error(error);

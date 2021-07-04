@@ -1,6 +1,8 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("./../../config/database");
-
+const TbInfo = require("./tb-info.model");
+const HealthFacility = require("./health-facility.model");
+const ClusterAttribute = require("./cluster-attribute.model");
 class Admin extends Model {}
 
 Admin.init(
@@ -26,12 +28,26 @@ Admin.init(
   }
 );
 
-// Admin.hasMany(Forum, {
-//   foreignKey: "creator",
-// });
-// Forum.belongsTo(Admin, {
-//   foreignKey: "creator",
-// });
+Admin.hasMany(TbInfo, {
+  foreignKey: "admin_id",
+});
+TbInfo.belongsTo(Admin, {
+  foreignKey: "admin_id",
+});
+
+Admin.hasMany(HealthFacility, {
+  foreignKey: "admin_id",
+});
+HealthFacility.belongsTo(Admin, {
+  foreignKey: "admin_id",
+});
+
+Admin.hasMany(ClusterAttribute, {
+  foreignKey: "admin_id",
+});
+ClusterAttribute.belongsTo(Admin, {
+  foreignKey: "admin_id",
+});
 
 // console.log("Admin", Admin === sequelize.models.Admin);
 
