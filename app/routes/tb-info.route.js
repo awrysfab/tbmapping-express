@@ -1,6 +1,7 @@
 const TbInfo = require("../models/tb-info.model");
 
 const router = require("express").Router();
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 router.get(
@@ -16,6 +17,42 @@ router.get(
       });
     } catch (error) {
       console.error(error);
+      res.status(500).send({
+        message: "Some error occurred."
+      });
+    }
+  });
+
+router.post(
+  "/",
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.body.title) {
+        res.status(400).send({
+          message: "Title can not be empty!"
+        });
+        return;
+      }
+      const bearerToken = req.headers['authorization'].split(' ');
+      const decodedJWT = jwt.verify(bearerToken[1], process.env.JWT_SECRET);
+      const tbinfo = {
+        title: req.body.title,
+        description: req.body.description,
+        admin_id: decodedJWT.id
+      };
+      TbInfo.create(tbinfo)
+        .then(data => {
+          res.status(200).send({
+            message: "Data successfully added!",
+            data: data
+          });
+        })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: "Some error occurred."
+      });
     }
   });
 

@@ -20,9 +20,11 @@ HealthFacility.init(
     },
     admin_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     subdistrict_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {
@@ -35,13 +37,6 @@ HealthFacility.init(
   }
 );
 
-// Admin.hasMany(Forum, {
-//   foreignKey: "creator",
-// });
-// Forum.belongsTo(Admin, {
-//   foreignKey: "creator",
-// });
-
-// console.log("Admin", HealthFacility === sequelize.models.HealthFacility);
+// console.log("HealthFacility", HealthFacility === sequelize.models.HealthFacility);
 
 module.exports = HealthFacility;

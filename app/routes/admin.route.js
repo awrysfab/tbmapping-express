@@ -6,7 +6,6 @@ const passport = require('passport');
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  console.log(req);
   const userWithEmail = await Admin.findOne({ where: { email } }).catch(
     (err) => {
       console.log('Error: ', err);
@@ -26,16 +25,16 @@ router.post('/login', async (req, res) => {
     { id: userWithEmail.id, email: userWithEmail.email },
     process.env.JWT_SECRET
   );
-  res.status(200).json({ message: 'Welcome!', user_id: userWithEmail.id, token: jwtToken });
+  res.status(200).json({ message: 'Welcome!', token: jwtToken });
 });
 
 router.get(
   "/",
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const bearerToken = req.headers['authorization'].split(' ');
-    const decodedJWT = jwt.verify(bearerToken[1], process.env.JWT_SECRET);
     try {
+      const bearerToken = req.headers['authorization'].split(' ');
+      const decodedJWT = jwt.verify(bearerToken[1], process.env.JWT_SECRET);
       const admin = await Admin.findOne({ where: { id: decodedJWT.id } });
       res.status(200).json({
         message: "get admin",
@@ -43,6 +42,9 @@ router.get(
       });
     } catch (error) {
       console.error(error);
+      res.status(500).send({
+        message: "Some error occurred."
+      });
     }
   });
 

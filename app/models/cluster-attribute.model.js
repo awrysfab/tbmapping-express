@@ -22,12 +22,15 @@ ClusterAttribute.init(
     },
     admin_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     year_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     subdistrict_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {
@@ -40,13 +43,6 @@ ClusterAttribute.init(
   }
 );
 
-// Admin.hasMany(Forum, {
-//   foreignKey: "creator",
-// });
-// Forum.belongsTo(Admin, {
-//   foreignKey: "creator",
-// });
-
-// console.log("ClusterAttribute", ClusterAttribute === sequelize.models.HealthFacility);
+// console.log("ClusterAttribute", ClusterAttribute === sequelize.models.ClusterAttribute);
 
 module.exports = ClusterAttribute;

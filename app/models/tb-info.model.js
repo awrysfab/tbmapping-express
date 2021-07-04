@@ -26,13 +26,6 @@ TbInfo.init(
   }
 );
 
-// Admin.hasMany(Forum, {
-//   foreignKey: "creator",
-// });
-// Forum.belongsTo(Admin, {
-//   foreignKey: "creator",
-// });
-
-// console.log("Admin", TbInfo === sequelize.models.TbInfo);
+// console.log("TbInfo", TbInfo === sequelize.models.TbInfo);
 
 module.exports = TbInfo;
