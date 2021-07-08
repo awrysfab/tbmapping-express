@@ -10,6 +10,7 @@ router.get(
   async (req, res) => {
     try {
       const tbinfos = await TbInfo.findAll(
+        { include: ["admin"] }
       );
       res.status(200).json({
         message: "get list of tbinfos",

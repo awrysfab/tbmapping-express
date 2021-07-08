@@ -33,6 +33,7 @@ Admin.hasMany(TbInfo, {
 });
 TbInfo.belongsTo(Admin, {
   foreignKey: "admin_id",
+  as: "admin"
 });
 
 Admin.hasMany(HealthFacility, {
@@ -40,6 +41,7 @@ Admin.hasMany(HealthFacility, {
 });
 HealthFacility.belongsTo(Admin, {
   foreignKey: "admin_id",
+  as: "admin"
 });
 
 Admin.hasMany(ClusterAttribute, {
@@ -47,6 +49,7 @@ Admin.hasMany(ClusterAttribute, {
 });
 ClusterAttribute.belongsTo(Admin, {
   foreignKey: "admin_id",
+  as: "admin"
 });
 
 // console.log("Admin", Admin === sequelize.models.Admin);

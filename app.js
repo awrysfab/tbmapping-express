@@ -17,9 +17,5 @@ const sequelize = require("./config/database");
 
 // sequelize.sync();
 
-// sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
-
 app.use("/api", routes);
 app.listen(port, () => console.log(`run in port ${port}`));

@@ -27,6 +27,7 @@ Subdistrict.hasMany(HealthFacility, {
 });
 HealthFacility.belongsTo(Subdistrict, {
   foreignKey: "subdistrict_id",
+  as: "subdistrict"
 });
 
 Subdistrict.hasMany(ClusterAttribute, {
@@ -34,6 +35,7 @@ Subdistrict.hasMany(ClusterAttribute, {
 });
 ClusterAttribute.belongsTo(Subdistrict, {
   foreignKey: "subdistrict_id",
+  as: "subdistrict"
 });
 
 // console.log("Subdistrict", Subdistrict === sequelize.models.Subdistrict);

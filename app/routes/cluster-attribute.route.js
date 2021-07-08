@@ -8,8 +8,7 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const clusterAttributes = await ClusterAttribute.findAll(
-      );
+      const clusterAttributes = await ClusterAttribute.findAll({ include: ["admin", "subdistrict"]});
       res.status(200).json({
         message: "get list of clusterAttributes",
         data: clusterAttributes,
@@ -30,7 +29,7 @@ router.post(
         });
         return;
       }
-      if (!req.body.year_id) {
+      if (!req.body.year) {
         res.status(400).send({
           message: "Year can not be empty!"
         });
@@ -44,8 +43,8 @@ router.post(
         death_rate: req.body.death_rate,
         density: req.body.density,
         healthy_home: req.body.healthy_home,
+        year: req.body.year,
         admin_id: decodedJWT.id,
-        year_id: req.body.year_id,
         subdistrict_id: req.body.subdistrict_id,
       };
       ClusterAttribute.create(clusterAttribute)

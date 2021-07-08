@@ -20,11 +20,11 @@ ClusterAttribute.init(
     healthy_home: {
       type: DataTypes.INTEGER,
     },
-    admin_id: {
+    year: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    year_id: {
+    admin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -36,7 +36,7 @@ ClusterAttribute.init(
   {
     sequelize,
     modelName: "ClusterAttribute",
-    tableName: "cluster_atrributes",
+    tableName: "cluster_attributes",
     createdAt: "created_at",
     updatedAt: "updated_at",
     underscored: true,

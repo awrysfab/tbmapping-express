@@ -8,8 +8,7 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const healthFacilities = await HealthFacility.findAll(
-      );
+      const healthFacilities = await HealthFacility.findAll({ include: ["admin", "subdistrict"] });
       res.status(200).json({
         message: "get list of healthFacilities",
         data: healthFacilities,
