@@ -1,6 +1,7 @@
 const ClusterAttribute = require("../models/cluster-attribute.model");
 
 const router = require("express").Router();
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 router.get(
@@ -38,7 +39,7 @@ router.post(
       const bearerToken = req.headers['authorization'].split(' ');
       const decodedJWT = jwt.verify(bearerToken[1], process.env.JWT_SECRET);
       const clusterAttribute = {
-        case: req.body.case,
+        case: req.body.new_case,
         target_case: req.body.target_case,
         death_rate: req.body.death_rate,
         density: req.body.density,

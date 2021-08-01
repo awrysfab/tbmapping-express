@@ -115,4 +115,23 @@ router.delete(
   }
 );
 
+router.get(
+  "/data",
+  async (req, res) => {
+    try {
+      const tbinfos = await TbInfo.findAll(
+        { include: ["admin"] }
+      );
+      res.status(200).json({
+        message: "get list of tbinfos",
+        data: tbinfos,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: "Some error occurred."
+      });
+    }
+  });
+
 module.exports = router;

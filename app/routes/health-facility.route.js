@@ -1,6 +1,7 @@
 const HealthFacility = require("../models/health-facility.model");
 
 const router = require("express").Router();
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 router.get(
@@ -117,5 +118,19 @@ router.delete(
     }
   }
 );
+
+router.get(
+  "/data",
+  async (req, res) => {
+    try {
+      const healthFacilities = await HealthFacility.findAll({ include: ["admin", "subdistrict"] });
+      res.status(200).json({
+        message: "get list of healthFacilities",
+        data: healthFacilities,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
 module.exports = router;
