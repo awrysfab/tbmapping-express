@@ -1,4 +1,5 @@
 # tbmapping-express
+TBmapping repository for backend system
 
 ## Setup
 ### Install dependencies
@@ -12,4 +13,4 @@ npm run start
 ```
 
 ### Frontend
-For frontend client, https://github.com/awrysfab/tbmapping-dashboard.git
+For frontend repository, https://github.com/awrysfab/tbmapping-dashboard.git
